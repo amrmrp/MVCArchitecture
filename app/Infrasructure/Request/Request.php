@@ -10,12 +10,13 @@ class Request
     private $path;
     private $match;
 
+
     /**
      * @return mixed
      */
     public function getMatch()
     {
-        return $this->match ;
+        return $this->match;
     }
 
     /**
@@ -34,6 +35,17 @@ class Request
         $this->setPath($getrequest);
         $this->setRequestmethod(strtolower($_SERVER['REQUEST_METHOD']));
     }
+
+    public function __get($name)
+    {
+        $data = $this->getMatch();
+        if (array_key_exists($name, $data)) {
+            return $data[$name];
+        }
+
+        return null;
+    }
+
 
     /**
      * @return mixed
@@ -68,7 +80,7 @@ class Request
     }
 
     /**
-     * @return mixed
+     * @return mixed trim($request->getPath(),'/')
      */
     public function getPath()
     {
@@ -80,8 +92,7 @@ class Request
      */
     protected function setPath($path)
     {
-
-        $this->path = $path;
+        $this->path = trim($path,'/');;
     }
 
 

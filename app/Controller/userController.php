@@ -8,9 +8,9 @@ use model\User;
 
 class userController
 {
-
     public function index(Request $request)
     {
+      echo  $request->id;
         echo "<pre>";
        var_dump($request);
         echo "ok";
@@ -18,8 +18,7 @@ class userController
     public function login()
     {
 
-      //  var_dump($request);
-        $db=new User();
-        var_dump($db->userget($request['email'],$request['password']));
+
+
    }
 }

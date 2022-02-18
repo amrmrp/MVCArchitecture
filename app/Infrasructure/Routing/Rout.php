@@ -87,6 +87,9 @@ class Rout
                 if (class_exists($class)) {
                     $object = new $class;
                     if (method_exists($class, $array[$requestController]["method"])) {
+//                        if (count($request->getMatch()) > 0) {
+//                            var_dump(($request->getMatch()));
+//                        }
                         $object->{$array[$requestController]["method"]}($request);
                     } else {
                         die("not found method");
@@ -101,7 +104,6 @@ class Rout
             die("route empity");
         }
     }
-
 
 
     /**
